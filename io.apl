@@ -40,7 +40,7 @@ no¯resize:
   →next
 
 merge:
-  result[⎕IO+row] ← result[⎕IO+row],⊂⎕UCS buf
+  result[⎕IO+row] ← result[⎕IO+row],⎕UCS buf
   →next
 
 close:
