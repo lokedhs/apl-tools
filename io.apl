@@ -54,13 +54,18 @@ nodefault:
   Z ← (~SEPARATOR⍷S)⊂S
 ∇
 
+∇Z←X io∆∆trimleft S
+  →(0≠⎕NC 'X')/nodefault
+  X ← ' '
+nodefault:
+  Z ← (+/×\(⎕IO+↑⍴,X)≠X⍳S)↓S
+∇
+
 ∇Z←X io∆trim S;LENGTH
   →(0≠⎕NC 'X')/nodefault
   X ← ' '
 nodefault:
-  LENGTH ← ⎕IO+↑⍴,X
-  S ← (+/×\LENGTH≠X⍳S)↓S
-  Z ← (-+/×\LENGTH≠X⍳⌽S)↓S
+  Z ← ⌽ X io∆∆trimleft ⌽ X io∆∆trimleft S
 ∇
 
 ∇io∆∆load_library;result
