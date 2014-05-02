@@ -33,7 +33,6 @@ no¯lf:
   ⍝ No merge, check if the result needs to be resized
   →(row<⍴result)/no¯resize
   result ← result,io∆∆bufsize⍴' '
-  ⎕←'resizing, new size =' (⍴result)
 no¯resize:
   result[⎕IO+row] ← ⊂⎕UCS buf
   row ← row+1
@@ -46,6 +45,22 @@ merge:
 close:
   buf ← IO[4] fd
   Z ← row ⍴ result
+∇
+
+∇Z←SEPARATOR io∆split S
+  →(0≠⎕NC 'SEPARATOR')/nodefault
+  SEPARATOR ← ','
+nodefault:
+  Z ← (~SEPARATOR⍷S)⊂S
+∇
+
+∇Z←X io∆trim S;LENGTH
+  →(0≠⎕NC 'X')/nodefault
+  X ← ' '
+nodefault:
+  LENGTH ← ⎕IO+↑⍴,X
+  S ← (+/×\LENGTH≠X⍳S)↓S
+  Z ← (-+/×\LENGTH≠X⍳⌽S)↓S
 ∇
 
 ∇io∆∆load_library;result
