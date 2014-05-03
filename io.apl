@@ -61,7 +61,7 @@ nodefault:
   Z ← (+/×\(⎕IO+↑⍴,X)≠X⍳S)↓S
 ∇
 
-∇Z←X io∆trim S;LENGTH
+∇Z←X io∆trim S
   →(0≠⎕NC 'X')/nodefault
   X ← ' '
 nodefault:
