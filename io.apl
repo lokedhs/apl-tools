@@ -3,11 +3,11 @@
 ⍝  Helper functions that wrap the lib_file_io native library,
 ⍝  exposing functions that are more easy to use.
 
-io∆∆bufsize ← 1000
+io⍙bufsize ← 1000
 
 ∇Z←io∆readfile F;fd;result;rows;buf;mergenext;mergethis;row
   row ← 0
-  result ← io∆∆bufsize ⍴ ' '
+  result ← io⍙bufsize ⍴ ' '
   mergenext ← 0
   fd ← IO[3] F
 
@@ -32,7 +32,7 @@ no¯lf:
 
   ⍝ No merge, check if the result needs to be resized
   →(row<⍴result)/no¯resize
-  result ← result,io∆∆bufsize⍴' '
+  result ← result,io⍙bufsize⍴' '
 no¯resize:
   result[⎕IO+row] ← ⊂⎕UCS buf
   row ← row+1
@@ -54,7 +54,7 @@ nodefault:
   Z ← (~SEPARATOR⍷S)⊂S
 ∇
 
-∇Z←X io∆∆trimleft S
+∇Z←X io⍙trimleft S
   →(0≠⎕NC 'X')/nodefault
   X ← ' '
 nodefault:
@@ -65,10 +65,10 @@ nodefault:
   →(0≠⎕NC 'X')/nodefault
   X ← ' '
 nodefault:
-  Z ← ⌽ X io∆∆trimleft ⌽ X io∆∆trimleft S
+  Z ← ⌽ X io⍙trimleft ⌽ X io⍙trimleft S
 ∇
 
-∇io∆∆load_library;result
+∇io⍙load_library;result
   →(0≠⎕NC 'IO')/skip
   result ← 'lib_file_io' ⎕FX 'IO'
   →('IO'≡result)/skip
@@ -76,7 +76,7 @@ nodefault:
 skip:
 ∇
 
-io∆∆load_library
-)erase io∆∆load_library
+io⍙load_library
+)erase io⍙load_library
 
 ⎕←'IO lib loaded'
